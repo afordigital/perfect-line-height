@@ -2,11 +2,16 @@ import { useState } from 'react'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
+  const [userFont, setUserFont] = useState('')
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSize = parseInt(e.target.value, 10)
     setFontSize(newSize)
   }
+
+  const handleFontChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserFont(e.target.value);
+  };
 
   const calculateLineHeight = (size: number) => {
     const baseFontSize = 16
@@ -62,10 +67,20 @@ function App () {
                 {lineHeight.toFixed(2)}
               </p>
             </div>
+            <div className='mt-4'>
+              <label className='text-cTextPrimary'>Import Your Font:</label>
+              <input
+                type='text'
+                value={userFont}
+                onChange={handleFontChange}
+                className='w-full p-2 border-2 border-cPrimary rounded-[4px]'
+                placeholder='Enter font name or URL'
+              />
+            </div>
           </article>
           <article
             className='w-[500px] text-cTextSecondary'
-            style={{ fontSize: fontSize }}
+            style={{ fontSize: fontSize, fontFamily: userFont || 'inherit' }}
           >
             Lorem Ipsum is simply the filler text of the printing presses
             template

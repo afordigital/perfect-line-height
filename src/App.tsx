@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { showToast } from './CustomToast'
 import { Toaster } from 'react-hot-toast'
 
-function App() {
+function App () {
   const [fontSize, setFontSize] = useState(16)
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +30,10 @@ function App() {
 
   // Generamos el código y lo copiamos al clipbboard
   const generateCode = () => {
-    const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(2)};`;
-    navigator.clipboard.writeText(code);
+    const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(
+      2
+    )};`
+    navigator.clipboard.writeText(code)
     // Mostramos al usuario un mensaje avisando que el codigo esta en el clipboard
     showToast(code)
   }
@@ -40,19 +42,17 @@ function App() {
     calculateLineHeight(fontSize)
 
   return (
-    <main className='w-screen min-h-screen flex flex-col justify-center items-center bg-cBackground'>
-      <div className='w-full flex-1 flex flex-col justify-center items-center px-4'>
-        <section className='flex flex-col gap-8 sm:gap-0'>
-          <h1 className='text-[55px] sm:text-[90px] leading-16 sm:leading-normal text-center font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
-            Perfect Line Height
-          </h1>
-          <h2 className='text-[20px] sm:text-[24px] text-cTextPrimary text-center'>
-            Know the perfect height of your lines based on your font size.
-          </h2>
-        </section>
-        <section className='flex mt-10 gap-8 flex-wrap w-full flex-col sm:flex-row items-center sm:justify-center'>
-          <article className='w-full sm:w-[300px]'>
-            <div className='flex justify-between items-center font-semibold mb-4 text-[20px] sm:text-[24px]'>
+    <main className='w-screen h-screen flex flex-col justify-center items-center bg-cBackground'>
+      <div className='flex-1 flex flex-col justify-center items-center'>
+        <h1 className='text-[90px] font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
+          Perfect Line Height
+        </h1>
+        <h2 className='text-[24px] text-cTextPrimary'>
+          Know the perfect height of your lines based on your font size.
+        </h2>
+        <section className='flex mt-10 gap-x-8'>
+          <article className='w-[300px]'>
+            <div className='flex justify-between items-center font-semibold mb-4 text-[24px]'>
               <label>
                 <p className='text-cTextPrimary'>Font Size</p>
               </label>
@@ -68,24 +68,15 @@ function App() {
               onChange={handleFontSizeChange}
               className='w-full'
             />
-            <div className='flex justify-between items-center font-semibold my-4 text-[20px] sm:text-[24px]'>
+            <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
               <p className='text-cTextPrimary'>Line Height</p>
               <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
                 {lineHeight.toFixed(2)}
               </p>
             </div>
-            <div className='flex flex-end font-semibold mt-12'>
-              <button
-                onClick={generateCode}
-                className='flex items-center gap-x-2 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800'
-              >
-                <svg className="w-4 h-4 text-indigo-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"></path></svg>
-                  Generate code
-              </button>
-            </div>
           </article>
           <article
-            className='max-h-[250px] sm:h-auto sm:w-[500px] text-cTextSecondary overflow-auto '
+            className='w-[500px] text-cTextSecondary'
             style={{ fontSize: fontSize }}
           >
             Lorem Ipsum is simply the filler text of the printing presses
@@ -93,10 +84,9 @@ function App() {
           </article>
         </section>
       </div>
-      <footer className='text-cSecondary h-[50px] flex items-center'>
+      <footer className='text-cSecondary h-[50px]'>
         Made with ❤️ by aforcita
       </footer>
-      <Toaster />
     </main>
   )
 }

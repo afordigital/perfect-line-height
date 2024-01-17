@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { showToast } from './CustomToast'
+import { Toaster } from 'react-hot-toast'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
@@ -24,6 +26,14 @@ function App () {
     )
 
     return { fontSize: size, lineHeight: limitedLineHeight }
+  }
+
+  // Generamos el código y lo copiamos al clipbboard
+  const generateCode = () => {
+    const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(2)};`;
+    navigator.clipboard.writeText(code);
+    // Mostramos al usuario un mensaje avisando que el codigo esta en el clipboard
+    showToast(code)
   }
 
   const { fontSize: calculatedFontSize, lineHeight } =
@@ -62,6 +72,15 @@ function App () {
                 {lineHeight.toFixed(2)}
               </p>
             </div>
+            <div className='flex flex-end font-semibold mt-12'>
+              <button
+                onClick={generateCode}
+                className='flex items-center gap-x-2 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800'
+              >
+                <svg className="w-4 h-4 text-indigo-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"></path></svg>
+                  Generate code
+              </button>
+            </div>
           </article>
           <article
             className='w-[500px] text-cTextSecondary'
@@ -75,6 +94,7 @@ function App () {
       <footer className='text-cSecondary h-[50px]'>
         Made with ❤️ by aforcita
       </footer>
+      <Toaster />
     </main>
   )
 }

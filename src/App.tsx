@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { showToast } from './CustomToast'
 import { Toaster } from 'react-hot-toast'
 
-function App() {
+function App () {
   const [fontSize, setFontSize] = useState(16)
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +30,10 @@ function App() {
 
   // Generamos el código y lo copiamos al clipbboard
   const generateCode = () => {
-    const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(2)};`;
-    navigator.clipboard.writeText(code);
+    const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(
+      2
+    )};`
+    navigator.clipboard.writeText(code)
     // Mostramos al usuario un mensaje avisando que el codigo esta en el clipboard
     showToast(code)
   }
@@ -40,58 +42,52 @@ function App() {
     calculateLineHeight(fontSize)
 
   return (
-    <>
-      {/* <div> */}
-        {/* <header className='sticky top-0'></header> */} {/* Si quieres usar el header debes descomentar el div de arriba y abajo */}
-        <main className='mt-50 w-full flex flex-col justify-center items-center'>
-          <div className='flex-1 flex flex-col justify-center items-center'>
-            <h1 className='text-[90px] font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
-              Perfect Line Height
-            </h1>
-            <h2 className='text-[24px] text-cTextPrimary'>
-              Know the perfect height of your lines based on your font size.
-            </h2>
-            <section className='flex mt-10 gap-x-8'>
-              <article className='w-[300px]'>
-                <div className='flex justify-between items-center font-semibold mb-4 text-[24px]'>
-                  <label>
-                    <p className='text-cTextPrimary'>Font Size</p>
-                  </label>
-                  <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
-                    {fontSize}
-                  </p>
-                </div>
-                <input
-                  type='range'
-                  min='8'
-                  max='72'
-                  value={fontSize}
-                  onChange={handleFontSizeChange}
-                  className='w-full'
-                />
-                <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
-                  <p className='text-cTextPrimary'>Line Height</p>
-                  <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
-                    {lineHeight.toFixed(2)}
-                  </p>
-                </div>
-              </article>
-              <article
-                className='w-[500px] text-cTextSecondary'
-                style={{ fontSize: fontSize }}
-              >
-                Lorem Ipsum is simply the filler text of the printing presses
-                template
-              </article>
-            </section>
-          </div>
-        </main>
-      {/* </div> */}
-      <footer className='flex items-center justify-center py-5 mt-20 text-cSecondary'>
+    <main className='w-screen h-screen flex flex-col justify-center items-center bg-cBackground'>
+      <div className='flex-1 flex flex-col justify-center items-center'>
+        <h1 className='text-[90px] font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
+          Perfect Line Height
+        </h1>
+        <h2 className='text-[24px] text-cTextPrimary'>
+          Know the perfect height of your lines based on your font size.
+        </h2>
+        <section className='flex mt-10 gap-x-8'>
+          <article className='w-[300px]'>
+            <div className='flex justify-between items-center font-semibold mb-4 text-[24px]'>
+              <label>
+                <p className='text-cTextPrimary'>Font Size</p>
+              </label>
+              <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
+                {fontSize}
+              </p>
+            </div>
+            <input
+              type='range'
+              min='8'
+              max='72'
+              value={fontSize}
+              onChange={handleFontSizeChange}
+              className='w-full'
+            />
+            <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
+              <p className='text-cTextPrimary'>Line Height</p>
+              <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
+                {lineHeight.toFixed(2)}
+              </p>
+            </div>
+          </article>
+          <article
+            className='w-[500px] text-cTextSecondary'
+            style={{ fontSize: fontSize }}
+          >
+            Lorem Ipsum is simply the filler text of the printing presses
+            template
+          </article>
+        </section>
+      </div>
+      <footer className='text-cSecondary h-[50px]'>
         Made with ❤️ by aforcita
       </footer>
-      <Toaster />
-    </>
+    </main>
   )
 }
 

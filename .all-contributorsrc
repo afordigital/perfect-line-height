@@ -1,0 +1,21 @@
+{
+  "files": [
+    "CONTRIBUTORS.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "jarrisondev",
+      "name": "Jarrison Cano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62910118?v=4",
+      "profile": "https://jarrison.dev/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "projectName": "perfect-line-height",
+  "projectOwner": "afordigital"
+}

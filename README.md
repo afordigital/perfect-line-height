@@ -14,8 +14,8 @@ It is commonly understood that line-height is a 1.5 multiplier of font-size. How
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jarrisondev"><img src="https://avatars.githubusercontent.com/u/62910118?v=4?s=100" width="100px;" alt="Jarrison Cano"/><br /><sub><b>Jarrison Cano</b></sub></a><br /><a href="https://github.com/afordigital/perfect-line-height/commits?author=jarrisondev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/aleramosAR"><img src="https://avatars.githubusercontent.com/u/18739365?v=4?s=100" width="100px;" alt="Alejandro Ramos"/><br /><sub><b>Alejandro Ramos</b></sub></a><br /><a href="#code-aleramosAR" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Medinaadev"><img src="https://avatars.githubusercontent.com/u/71106038?v=4?s=100" width="100px;" alt="Medinaa"/><br /><sub><b>Medinaa</b></sub></a><br /><a href="#code-Medinaadev" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

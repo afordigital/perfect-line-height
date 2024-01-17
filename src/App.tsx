@@ -66,7 +66,7 @@ function App() {
             </div>
           </article>
           <article
-            className='h-[250px] sm:h-auto sm:w-[500px] text-cTextSecondary overflow-auto '
+            className='max-h-[250px] sm:h-auto sm:w-[500px] text-cTextSecondary overflow-auto '
             style={{ fontSize: fontSize }}
           >
             Lorem Ipsum is simply the filler text of the printing presses
@@ -74,7 +74,7 @@ function App() {
           </article>
         </section>
       </div>
-      <footer className='text-cSecondary h-[50px]'>
+      <footer className='text-cSecondary h-[50px] flex items-center'>
         Made with ❤️ by aforcita
       </footer>
     </main>

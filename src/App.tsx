@@ -76,6 +76,13 @@ function App () {
                   {lineHeight.toFixed(2)}
                 </p>
               </div>
+              <button
+                onClick={generateCode}
+                className='flex items-center gap-x-2 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800'
+              >
+                <svg className="w-4 h-4 text-indigo-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4"></path></svg>
+                  Generate code
+              </button>
             </article>
             <article
               className='w-[500px] text-cTextSecondary'

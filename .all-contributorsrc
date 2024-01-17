@@ -1,6 +1,6 @@
 {
   "files": [
-    "CONTRIBUTORS.md"
+    "README.md"
   ],
   "commitType": "docs",
   "commitConvention": "angular",

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { showToast } from './CustomToast'
 import { Toaster } from 'react-hot-toast'
+import JSConfetti from 'js-confetti'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
 
+  const jsConfetti = new JSConfetti()
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSize = parseInt(e.target.value, 10)
     setFontSize(newSize)
@@ -36,6 +38,10 @@ function App () {
     navigator.clipboard.writeText(code)
     // Mostramos al usuario un mensaje avisando que el codigo esta en el clipboard
     showToast(code)
+    // Confetti!!
+    jsConfetti.addConfetti({
+        emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸'],
+    })
   }
 
   const { fontSize: calculatedFontSize, lineHeight } =

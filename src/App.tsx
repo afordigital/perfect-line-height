@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import JSConfetti from 'js-confetti'
 import { Toaster } from 'react-hot-toast'
 import { showToast } from './CustomToast'
+import { RootSelect } from './components/Select'
 
-function App() {
+function App () {
   const [fontSize, setFontSize] = useState(16)
   const [currentString, setCurrentString] = useState<Array<string>>([]) // Update the type of currentString to be an array of strings
 
@@ -73,9 +74,6 @@ function App() {
 
   return (
     <>
-      {/* <div> */}
-      {/* <header className='sticky top-0'></header> */}{' '}
-      {/* Si quieres usar el header debes descomentar el div de arriba y abajo */}
       <main className='mt-50 w-full flex flex-col justify-center items-center'>
         <h1 className='text-[90px] font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
           Perfect Line Height
@@ -93,14 +91,16 @@ function App() {
                 {fontSize}
               </p>
             </div>
-            <input
-              type='range'
-              min='8'
-              max='72'
-              value={fontSize}
-              onChange={handleFontSizeChange}
-              className='w-full'
-            />
+            <div className='grid place-items-center'>
+              <input
+                type='range'
+                min='8'
+                max='72'
+                value={fontSize}
+                onChange={handleFontSizeChange}
+                className='custom-slider bg-transparent appearance-none cursor-pointer w-60'
+              />
+            </div>
             <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
               <p className='text-cTextPrimary'>Line Height</p>
               <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
@@ -129,6 +129,8 @@ function App() {
               Generate code
             </button>
           </article>
+          <RootSelect />
+
           <article
             className='w-[500px] text-cTextSecondary'
             style={{ fontSize: fontSize }}
@@ -138,7 +140,6 @@ function App() {
           </article>
         </section>
       </main>
-      {/* </div> */}
       <footer className='flex items-center justify-center py-5 mt-20 text-cSecondary'>
         Made with ❤️ by aforcita
       </footer>

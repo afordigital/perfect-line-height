@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import JSConfetti from 'js-confetti'
 import { Toaster } from 'react-hot-toast'
 import { showToast } from './CustomToast'
-import { RootSelect } from './components/Select'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
@@ -83,6 +82,13 @@ function App () {
         </h2>
         <section className='flex mt-10 gap-x-8'>
           <article className='w-[300px]'>
+            <div className='grid'>
+              <select className='appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 ...'>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Maybe</option>
+              </select>
+            </div>
             <div className='flex justify-between items-center font-semibold mb-4 text-[24px]'>
               <label>
                 <p className='text-cTextPrimary'>Font Size</p>
@@ -129,7 +135,6 @@ function App () {
               Generate code
             </button>
           </article>
-          <RootSelect />
 
           <article
             className='w-[500px] text-cTextSecondary'

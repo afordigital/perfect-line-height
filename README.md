@@ -8,22 +8,9 @@ It is commonly understood that line-height is a 1.5 multiplier of font-size. How
 
 ## Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/aleramosAR"><img src="https://avatars.githubusercontent.com/u/18739365?v=4?s=100" width="100px;" alt="Alejandro Ramos"/><br /><sub><b>Alejandro Ramos</b></sub></a><br /><a href="#code-aleramosAR" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Medinaadev"><img src="https://avatars.githubusercontent.com/u/71106038?v=4?s=100" width="100px;" alt="Medinaa"/><br /><sub><b>Medinaa</b></sub></a><br /><a href="#code-Medinaadev" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<a href="https://github.com/afordigital/trello-board/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=afordigital/trello-board" />
+</a>
 
 ## Getting Started
 

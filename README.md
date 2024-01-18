@@ -8,8 +8,8 @@ It is commonly understood that line-height is a 1.5 multiplier of font-size. How
 
 ## Contributors
 
-<a href="https://github.com/afordigital/trello-board/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=afordigital/trello-board" />
+<a href="https://github.com/afordigital/perfect-line-height/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=afordigital/perfect-line-height" />
 </a>
 
 ## Getting Started

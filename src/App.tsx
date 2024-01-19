@@ -1,17 +1,53 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
-  const [userFont, setUserFont] = useState('')
+  const [customFont, setCustomFont] = useState('');
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSize = parseInt(e.target.value, 10)
     setFontSize(newSize)
   }
 
-  const handleFontChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserFont(e.target.value);
+  const handleFontFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInput = e.target;
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      if (file) {
+        const fontUrl = URL.createObjectURL(file);
+        console.log('Font URL:', fontUrl);
+        setCustomFont(fontUrl);
+        applyFontStyles(fontUrl);
+      }
+    }
   };
+
+  const applyFontStyles = (fontUrl: string) => {
+    const style = document.createElement('style');
+    const fontFace = `
+      @font-face {
+        font-family: 'CustomFont';
+        src: url('${fontUrl}') format('truetype');
+      }
+      .custom-font {
+        font-family: 'CustomFont', sans-serif;
+      }
+    `;
+    style.appendChild(document.createTextNode(fontFace));
+
+  
+    const font = new FontFace('CustomFont', `url('${fontUrl}') format('truetype')`);
+    font.load().then(() => {
+      document.fonts.add(font);
+      document.head.appendChild(style);
+    }).catch((error) => {
+      console.error('Error loading font:', error);
+    });
+  };
+
+  useEffect(() => {
+    console.log(`Custom font updated:`, customFont);
+  }, [customFont]);
 
   const calculateLineHeight = (size: number) => {
     const baseFontSize = 16
@@ -68,19 +104,18 @@ function App () {
               </p>
             </div>
             <div className='mt-4'>
-              <label className='text-cTextPrimary'>Import Your Font:</label>
+              <label className='text-cTextPrimary'>Upload Font File:</label>
               <input
-                type='text'
-                value={userFont}
-                onChange={handleFontChange}
+                type='file'
+                accept='.ttf, .otf, .woff, .woff2'
+                onChange={handleFontFileChange}
                 className='w-full p-2 border-2 border-cPrimary rounded-[4px]'
-                placeholder='Enter font name or URL'
               />
             </div>
           </article>
           <article
             className='w-[500px] text-cTextSecondary'
-            style={{ fontSize: fontSize, fontFamily: userFont || 'inherit' }}
+            style={{ fontSize: fontSize, fontFamily: customFont || 'inherit'  }}
           >
             Lorem Ipsum is simply the filler text of the printing presses
             template

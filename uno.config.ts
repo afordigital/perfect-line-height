@@ -5,7 +5,7 @@ export default defineConfig({
     colors: {
       cBackground: '#0D1117',
       cPrimary: '#28303F',
-      cSecondary: '#65768A',
+      cSecondary: '#9EB0C5',
       cTextPrimary: '#ABB5C1',
       cTextSecondary: '#E5ECFF'
     }

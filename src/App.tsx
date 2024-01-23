@@ -11,7 +11,7 @@ import { Button } from './components/common/Button'
 import { FontSizeSlider } from './components/FontSizeSlider'
 import { TYPOGRAPHY } from './constants'
 
-function App () {
+const App = () => {
   const [fontSize, setFontSize] = useState(16)
   const [currentString, setCurrentString] = useState<Array<string>>([])
   const [fontFamily, setFontFamily] = useState<string>(TYPOGRAPHY.INTER)
@@ -23,10 +23,6 @@ function App () {
       currentString.shift()
     }
     setCurrentString([...currentString, keyPressed])
-  }
-
-  const handleChangeTypography = (typography: string) => {
-    setFontFamily(typography)
   }
 
   useEffect(() => {
@@ -62,7 +58,7 @@ function App () {
               fontSize={fontSize}
               fontFamily={fontFamily}
               setFontSize={setFontSize}
-              onFontChange={handleChangeTypography}
+              setFontFamily={setFontFamily}
             />
 
             <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>

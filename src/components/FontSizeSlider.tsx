@@ -4,17 +4,21 @@ import { TYPOGRAPHY } from '../constants'
 type Props = {
   fontSize: number
   fontFamily: string
-  setFontSize: (fontSize: number) => void
-  onFontChange: (typography: string) => void
+  setFontSize: React.Dispatch<React.SetStateAction<number>>
+  setFontFamily: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const FontSizeSlider = (props: Props) => {
-  const { fontSize, fontFamily, setFontSize, onFontChange } = props
+  const { fontSize, fontFamily, setFontSize, setFontFamily } = props
 
-  const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(e.target.value, 10)
+  const handleFontSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSize = parseInt(event.target.value, 10)
     setFontSize(newSize)
   }
+
+  const handleChangeTypography = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => setFontFamily(event?.target.value)
 
   const optionStyle = 'bg-cPrimary h-10 text-lg text-cTextPrimary font-semibold'
 
@@ -23,7 +27,7 @@ export const FontSizeSlider = (props: Props) => {
       <div className='grid'>
         <div className='relative w-full flex items-center'>
           <select
-            onChange={event => onFontChange(event?.target.value)}
+            onChange={handleChangeTypography}
             value={fontFamily}
             className='grow appearance-none bg-transparent row-start-1 col-start-1 border-2 border-cPrimary text-cTextPrimary p-2 font-semibold'
           >

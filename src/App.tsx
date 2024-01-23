@@ -11,7 +11,7 @@ import { Button } from './components/common/Button'
 import { FontSizeSlider } from './components/FontSizeSlider'
 import { TYPOGRAPHY } from './constants'
 
-function App () {
+const App = () => {
   const [fontSize, setFontSize] = useState(16)
   const [currentString, setCurrentString] = useState<Array<string>>([])
   const [fontFamily, setFontFamily] = useState<string>(TYPOGRAPHY.INTER)

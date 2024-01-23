@@ -23,7 +23,7 @@ export const FontSizeSlider = (props: Props) => {
       <div className='grid'>
         <div className='relative w-full flex items-center'>
           <select
-            onChange={event => onFontChange(event?.target.value)}
+            onChange={(event) => onFontChange(event?.target.value)}
             value={fontFamily}
             className='grow appearance-none bg-transparent row-start-1 col-start-1 border-2 border-cPrimary text-cTextPrimary p-2 font-semibold'
           >

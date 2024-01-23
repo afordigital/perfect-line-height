@@ -1,3 +1,25 @@
+body {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px; /*<- Si cambias estos numeros de aca pudes hacerlos mas pequeños o mas grandes*/
+  background-color: #3f5270;
+}
+
+.custom-lines {
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    #28303f 20%,
+    #28303f 70%,
+    transparent 70%
+  );
+  background-size: 80% 30px;
+}
+
 .custom-slider {
   -webkit-appearance: none;
 }

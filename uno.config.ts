@@ -14,7 +14,11 @@ export default defineConfig({
     presetUno(),
     presetWebFonts({
       provider: 'google',
-      fonts: {}
+      fonts: {
+        inter: 'Inter',
+        roboto: 'Roboto',
+        montserrat: 'Montserrat'
+      }
     }),
     presetIcons({
       cdn: 'https://esm.sh/',

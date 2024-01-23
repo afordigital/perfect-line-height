@@ -3,25 +3,30 @@ import { useEffect, useState } from 'react'
 import JSConfetti from 'js-confetti'
 import { Toaster } from 'react-hot-toast'
 import { showToast } from './CustomToast'
+import { calculateLineHeight } from './utils'
+import { Footer } from './components/Footer'
+import { StringTemplate } from './components/StringTemplate'
+import { Title } from './components/Title'
+import { Button } from './components/common/Button'
+import { FontSizeSlider } from './components/FontSizeSlider'
+import { TYPOGRAPHY } from './constants'
 
 function App () {
   const [fontSize, setFontSize] = useState(16)
-  const [currentString, setCurrentString] = useState<Array<string>>([]) // Update the type of currentString to be an array of strings
-
-  const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSize = parseInt(e.target.value, 10)
-    setFontSize(newSize)
-  }
+  const [currentString, setCurrentString] = useState<Array<string>>([])
+  const [fontFamily, setFontFamily] = useState<string>(TYPOGRAPHY.INTER)
 
   const handleKeyPress = (event: { key: string }) => {
     const keyPressed: string = event.key.toLowerCase()
     console.log(currentString.join(''))
-    // keep 8 elements and remove the first one if the array is longer than 8
     if (currentString.length >= 8) {
       currentString.shift()
     }
-    // add the key pressed to the array
-    setCurrentString([...currentString, keyPressed]) // Fix the type error by updating the type of currentString
+    setCurrentString([...currentString, keyPressed])
+  }
+
+  const handleChangeTypography = (typography: string) => {
+    setFontFamily(typography)
   }
 
   useEffect(() => {
@@ -30,41 +35,17 @@ function App () {
       confetti.addConfetti()
       setCurrentString([])
     }
-  }, [currentString])
-
-  useEffect(() => {
     document.addEventListener('keypress', handleKeyPress)
-
     return () => {
       document.removeEventListener('keypress', handleKeyPress)
     }
   }, [currentString])
 
-  const calculateLineHeight = (size: number) => {
-    const baseFontSize = 16
-    const baseLineHeight = 1.5
-    const minLineHeight = 1
-    const maxLineHeight = 2
-
-    // Fórmula inversamente proporcional ajustada con ligero acortamiento
-    const lineHeight = baseLineHeight / (size / baseFontSize) - 0.1
-
-    // Aplicamos límites superior e inferior
-    const limitedLineHeight = Math.max(
-      minLineHeight,
-      Math.min(lineHeight, maxLineHeight)
-    )
-
-    return { fontSize: size, lineHeight: limitedLineHeight }
-  }
-
-  // Generamos el código y lo copiamos al clipbboard
   const generateCode = () => {
     const code = `font-size: ${fontSize}px; line-height: ${lineHeight.toFixed(
       2
     )};`
     navigator.clipboard.writeText(code)
-    // Mostramos al usuario un mensaje avisando que el codigo esta en el clipboard
     showToast(code)
   }
 
@@ -73,81 +54,32 @@ function App () {
 
   return (
     <>
-      <main className='mt-50 w-full flex flex-col justify-center items-center'>
-        <h1 className='text-[90px] font-bold bg-gradient-to-b from-[#97A8DB] via-[#EBEEF8] to-[#546391] text-transparent bg-clip-text'>
-          Perfect Line Height
-        </h1>
-        <h2 className='text-[24px] text-cTextPrimary'>
-          Know the perfect height of your lines based on your font size.
-        </h2>
-        <section className='flex mt-10 gap-x-8'>
-          <article className='w-[300px]'>
-            <div className='grid'>
-              <select className='appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 ...'>
-                <option>Yes</option>
-                <option>No</option>
-                <option>Maybe</option>
-              </select>
-            </div>
-            <div className='flex justify-between items-center font-semibold mb-4 text-[24px]'>
-              <label>
-                <p className='text-cTextPrimary'>Font Size</p>
-              </label>
-              <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
-                {fontSize}
-              </p>
-            </div>
-            <div className='grid place-items-center'>
-              <input
-                type='range'
-                min='8'
-                max='72'
-                value={fontSize}
-                onChange={handleFontSizeChange}
-                className='custom-slider bg-transparent appearance-none cursor-pointer w-60'
-              />
-            </div>
+      <main className='flex-1 mt-50 w-full h-full flex flex-col justify-center items-center overflow-hidden'>
+        <Title />
+        <section className='grid grid-cols-2 flex-1 mt-10 gap-x-24 max-w-5xl mx-auto overflow-hidden'>
+          <article className='w-full space-y-8'>
+            <FontSizeSlider
+              fontSize={fontSize}
+              fontFamily={fontFamily}
+              setFontSize={setFontSize}
+              onFontChange={handleChangeTypography}
+            />
+
             <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
               <p className='text-cTextPrimary'>Line Height</p>
               <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
                 {lineHeight.toFixed(2)}
               </p>
             </div>
-            <button
-              onClick={generateCode}
-              className='flex items-center gap-x-2 h-8 px-4 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg cursor-pointer focus:shadow-outline hover:bg-indigo-800'
-            >
-              <svg
-                className='w-4 h-4 text-indigo-100'
-                aria-hidden='true'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 16 20'
-              >
-                <path
-                  stroke='currentColor'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M1 17V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M5 15V1m8 18v-4'
-                ></path>
-              </svg>
-              Generate code
-            </button>
-          </article>
 
-          <article
-            className='w-[500px] text-cTextSecondary'
-            style={{ fontSize: fontSize }}
-          >
-            Lorem Ipsum is simply the filler text of the printing presses
-            template
+            <div className='flex w-full justify-center'>
+              <Button onClick={generateCode}>Copy CSS</Button>
+            </div>
           </article>
+          <StringTemplate fontSize={fontSize} fontFamily={fontFamily} />
         </section>
       </main>
-      <footer className='flex items-center justify-center py-5 mt-20 text-cSecondary'>
-        Made with ❤️ by aforcita
-      </footer>
+      <Footer />
       <Toaster />
     </>
   )

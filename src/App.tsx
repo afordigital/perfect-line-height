@@ -25,10 +25,6 @@ const App = () => {
     setCurrentString([...currentString, keyPressed])
   }
 
-  const handleChangeTypography = (typography: string) => {
-    setFontFamily(typography)
-  }
-
   useEffect(() => {
     if (currentString.join('') === 'aforcita') {
       const confetti = new JSConfetti()
@@ -62,7 +58,7 @@ const App = () => {
               fontSize={fontSize}
               fontFamily={fontFamily}
               setFontSize={setFontSize}
-              onFontChange={handleChangeTypography}
+              setFontFamily={setFontFamily}
             />
 
             <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>

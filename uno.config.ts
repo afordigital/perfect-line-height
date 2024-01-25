@@ -10,6 +10,14 @@ export default defineConfig({
       cTextSecondary: '#E5ECFF'
     }
   },
+  safelist: [
+    'text-right',
+    'text-center',
+    'text-left',
+    'font-inter',
+    'font-roboto',
+    'font-montserrat'
+  ],
   presets: [
     presetUno(),
     presetWebFonts({

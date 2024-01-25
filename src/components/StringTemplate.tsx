@@ -1,24 +1,29 @@
 import { useState } from 'react'
 import { AlignIcon } from './common/AlignIcon'
 import { AlignLeft, AlignJustify, AlignRight } from 'lucide-react'
-import { MODE, MODE_VIEW_TO_ALIGNMENT } from '../constants'
+import {
+  MODE,
+  MODE_VIEW_TO_ALIGNMENT,
+  type ModeView,
+  type Typography
+} from '../constants'
 
 export const StringTemplate = ({
   fontSize,
   fontFamily
 }: {
   fontSize: number
-  fontFamily: string
+  fontFamily: Typography
 }) => {
-  const [modeView, setModeView] = useState(MODE.LEFT)
+  const [modeView, setModeView] = useState<ModeView>(MODE.LEFT)
 
-  const handleView = (view: string) => {
+  const handleView = (view: ModeView) => {
     setModeView(view)
   }
 
   return (
-    <div className='space-y-4'>
-      <div className='flex gap-x-2 w-fit h-fit'>
+    <div className="space-y-4">
+      <div className="flex gap-x-2 w-fit h-fit">
         <AlignIcon
           active={modeView === MODE.LEFT}
           onClick={() => handleView(MODE.LEFT)}
@@ -39,7 +44,7 @@ export const StringTemplate = ({
         </AlignIcon>
       </div>
       <article
-        className='custom-lines p-6 w-full text-cTextSecondary font-semibold'
+        className="custom-lines p-6 w-full text-cTextSecondary font-semibold"
         style={{ fontSize: fontSize }}
       >
         <p className={`${MODE_VIEW_TO_ALIGNMENT[modeView]} font-${fontFamily}`}>

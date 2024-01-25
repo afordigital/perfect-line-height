@@ -9,14 +9,14 @@ import { StringTemplate } from './components/StringTemplate'
 import { Title } from './components/Title'
 import { Button } from './components/common/Button'
 import { FontSizeSlider } from './components/FontSizeSlider'
-import { TYPOGRAPHY } from './constants'
+import { TYPOGRAPHY, type Typography } from './constants'
 
-function App () {
+function App() {
   const [fontSize, setFontSize] = useState(16)
   const [currentString, setCurrentString] = useState<Array<string>>([])
-  const [fontFamily, setFontFamily] = useState<string>(TYPOGRAPHY.INTER)
+  const [fontFamily, setFontFamily] = useState<Typography>(TYPOGRAPHY.INTER)
 
-  const handleKeyPress = (event: { key: string }) => {
+  const handleKeyPress = (event: KeyboardEvent) => {
     const keyPressed: string = event.key.toLowerCase()
     console.log(currentString.join(''))
     if (currentString.length >= 8) {
@@ -25,7 +25,7 @@ function App () {
     setCurrentString([...currentString, keyPressed])
   }
 
-  const handleChangeTypography = (typography: string) => {
+  const handleChangeTypography = (typography: Typography) => {
     setFontFamily(typography)
   }
 
@@ -49,15 +49,14 @@ function App () {
     showToast(code)
   }
 
-  const { fontSize: calculatedFontSize, lineHeight } =
-    calculateLineHeight(fontSize)
+  const { lineHeight } = calculateLineHeight(fontSize)
 
   return (
     <>
-      <main className='flex-1 mt-50 w-full h-full flex flex-col justify-center items-center overflow-hidden'>
+      <main className="flex-1 mt-50 w-full h-full flex flex-col justify-center items-center overflow-hidden">
         <Title />
-        <section className='grid grid-cols-2 flex-1 mt-10 gap-x-24 max-w-5xl mx-auto overflow-hidden'>
-          <article className='w-full space-y-8'>
+        <section className="grid grid-cols-2 flex-1 mt-10 gap-x-24 max-w-5xl mx-auto overflow-hidden">
+          <article className="w-full space-y-8">
             <FontSizeSlider
               fontSize={fontSize}
               fontFamily={fontFamily}
@@ -65,14 +64,14 @@ function App () {
               onFontChange={handleChangeTypography}
             />
 
-            <div className='flex justify-between items-center font-semibold my-4 text-[24px]'>
-              <p className='text-cTextPrimary'>Line Height</p>
-              <p className='p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]'>
+            <div className="flex justify-between items-center font-semibold my-4 text-[24px]">
+              <p className="text-cTextPrimary">Line Height</p>
+              <p className="p-2 text-cTextPrimary border-2 border-cPrimary rounded-[4px] flex items-center justify-center w-[64px] h-[40px]">
                 {lineHeight.toFixed(2)}
               </p>
             </div>
 
-            <div className='flex w-full justify-center'>
+            <div className="flex w-full justify-center">
               <Button onClick={generateCode}>Copy CSS</Button>
             </div>
           </article>
